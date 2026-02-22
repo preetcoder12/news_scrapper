@@ -1,0 +1,131 @@
+{
+    "cycle_id": "22-Feb-2026_02-31-PM",
+    "scraped_at": "2026-02-22 14:31:23",
+    "sources_scraped": [
+        {
+            "name": "IndiaToday",
+            "categories": [
+                {
+                    "name": "home",
+                    "count": 4
+                },
+                {
+                    "name": "india",
+                    "count": 30
+                },
+                {
+                    "name": "world",
+                    "count": 28
+                },
+                {
+                    "name": "business",
+                    "count": 30
+                },
+                {
+                    "name": "tech",
+                    "count": 30
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "categories": [
+                {
+                    "name": "home",
+                    "count": 30
+                },
+                {
+                    "name": "news",
+                    "count": 27
+                },
+                {
+                    "name": "world",
+                    "count": 29
+                },
+                {
+                    "name": "business",
+                    "count": 30
+                },
+                {
+                    "name": "tech",
+                    "count": 30
+                }
+            ]
+        },
+        {
+            "name": "CNN",
+            "categories": [
+                {
+                    "name": "home",
+                    "count": 30
+                },
+                {
+                    "name": "world",
+                    "count": 30
+                },
+                {
+                    "name": "politics",
+                    "count": 30
+                },
+                {
+                    "name": "business",
+                    "count": 30
+                },
+                {
+                    "name": "health",
+                    "count": 30
+                }
+            ]
+        },
+        {
+            "name": "Reuters",
+            "categories": [
+                {
+                    "name": "home",
+                    "count": 0
+                },
+                {
+                    "name": "world",
+                    "count": 0
+                },
+                {
+                    "name": "business",
+                    "count": 0
+                },
+                {
+                    "name": "legal",
+                    "count": 0
+                },
+                {
+                    "name": "tech",
+                    "count": 0
+                }
+            ]
+        },
+        {
+            "name": "AlJazeera",
+            "categories": [
+                {
+                    "name": "home",
+                    "count": 30
+                },
+                {
+                    "name": "news",
+                    "count": 30
+                },
+                {
+                    "name": "middle_east",
+                    "count": 30
+                },
+                {
+                    "name": "economy",
+                    "count": 30
+                },
+                {
+                    "name": "science",
+                    "count": 0
+                }
+            ]
+        }
+    ]
+}
