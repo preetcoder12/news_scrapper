@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #050505;
+  --color-foreground: #ffffff;
+  --color-accent: #8b5cf6;
+  --color-accent-secondary: #ec4899;
+}
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  --accent: #8b5cf6;
+  --accent-secondary: #ec4899;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 50% 0%, #1a103d 0%, #050505 50%);
+  min-height: 100vh;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl shadow-2xl;
+  }
+
+  .premium-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-pink-500 font-bold;
+  }
+
+  .premium-button {
+    @apply relative overflow-hidden px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-violet-500/25 active:scale-95 text-white font-medium flex items-center gap-2;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dynamic Hover Effects */
+.news-card-hover {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.news-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  @apply border-violet-500/50 shadow-violet-500/10;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
