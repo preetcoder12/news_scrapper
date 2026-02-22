@@ -238,39 +238,57 @@ def scrape_page(source_name, base_url, category_name, path, target_dir):
         return 0
 
 # --- MAIN ENGINE ---
-print("🚀 GLOBAL MULTI-NEWS SCRAPER INITIALIZED (SUPABASE SYNC ON)")
-print("Targeting: India Today, BBC, CNN, Reuters, Al Jazeera")
-print("Cycle Interval: 2 Minutes | Press Ctrl+C to stop.\n")
-
-while True:
-    now = datetime.now()
-    cycle_id = now.strftime("%d-%b-%Y_%I-%M-%p") 
+def main():
+    print("🚀 GLOBAL MULTI-NEWS SCRAPER INITIALIZED (SUPABASE SYNC ON)")
+    print("Targeting: India Today, BBC, CNN, Reuters, Al Jazeera")
     
-    print(f"📅 STARTING CYCLE: {cycle_id}")
+    run_once = "--once" in sys.argv
     
-    overall_report = {
-        "cycle_id": cycle_id,
-        "scraped_at": now.strftime("%Y-%m-%d %H:%M:%S"),
-        "sources_scraped": []
-    }
+    if run_once:
+        print("Mode: Single Cycle (Cron Mode)")
+    else:
+        print("Cycle Interval: 2 Minutes | Press Ctrl+C to stop.\n")
 
-    for source in NEWS_SOURCES:
-        print(f"  🏢 Source: {source['name']}")
-        source_report = {"name": source['name'], "categories": []}
+    while True:
+        now = datetime.now()
+        cycle_id = now.strftime("%d-%b-%Y_%I-%M-%p") 
         
-        for cat_name, path in source['categories'].items():
-            target_path = os.path.join(BASE_OUTPUT_FOLDER, cycle_id, source['name'], cat_name)
-            create_folder(target_path)
-            
-            count = scrape_page(source['name'], source['base_url'], cat_name, path, target_path)
-            source_report["categories"].append({"name": cat_name, "count": count})
-            
-            time.sleep(2)
+        print(f"📅 STARTING CYCLE: {cycle_id}")
         
-        overall_report["sources_scraped"].append(source_report)
+        overall_report = {
+            "cycle_id": cycle_id,
+            "scraped_at": now.strftime("%Y-%m-%d %H:%M:%S"),
+            "sources_scraped": []
+        }
 
-    with open(os.path.join(BASE_OUTPUT_FOLDER, cycle_id, "summary.json"), "w") as f:
-        json.dump(overall_report, f, indent=4)
+        for source in NEWS_SOURCES:
+            print(f"  🏢 Source: {source['name']}")
+            source_report = {"name": source['name'], "categories": []}
+            
+            for cat_name, path in source['categories'].items():
+                target_path = os.path.join(BASE_OUTPUT_FOLDER, cycle_id, source['name'], cat_name)
+                create_folder(target_path)
+                
+                count = scrape_page(source['name'], source['base_url'], cat_name, path, target_path)
+                source_report["categories"].append({"name": cat_name, "count": count})
+                
+                time.sleep(2)
+            
+            overall_report["sources_scraped"].append(source_report)
 
-    print(f"✅ Cycle {cycle_id} complete. Data synced to Supabase. Waiting 2 minutes...")
-    time.sleep(120)
+        # Save summary locally
+        cycle_dir = os.path.join(BASE_OUTPUT_FOLDER, cycle_id)
+        os.makedirs(cycle_dir, exist_ok=True)
+        with open(os.path.join(cycle_dir, "summary.json"), "w") as f:
+            json.dump(overall_report, f, indent=4)
+
+        print(f"✅ Cycle {cycle_id} complete. Data synced to Supabase.")
+        
+        if run_once:
+            break
+            
+        print("Waiting 2 minutes...")
+        time.sleep(120)
+
+if __name__ == "__main__":
+    main()
