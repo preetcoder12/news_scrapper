@@ -2,6 +2,7 @@ import requests
 import time
 import json
 import os
+import sys
 from bs4 import BeautifulSoup
 from datetime import datetime
 from dotenv import load_dotenv
