@@ -2,7 +2,7 @@ name: Live News Scraper Cron
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour
+    - cron: '0 0 */7 * *' # Runs every 7 days
   workflow_dispatch: # Allows manual trigger
 
 jobs:
